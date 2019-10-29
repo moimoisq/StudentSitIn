@@ -1,7 +1,7 @@
 ---
 title: "Student Sit In"
-author: "your name here"
-date: "10/26/2019"
+author: "Moises Sales"
+date: "10/28/2019"
 output: 
   html_document:
     toc: true
@@ -49,6 +49,7 @@ names(UCDdataframe)
 what are the variable types, and indicate gaphical, numerical, and inferential methods appropriate
 for this question  !--> 
 
+Both Variables in this analysis are categorical, hence we use bar graphs and tables to summarize the data and a chi square test for inference.
 
 ## Data summary
 
@@ -56,35 +57,36 @@ for this question  !-->
 put the graphic description of the data here
 
 ```{r}
-
+barchartGC(~seat+major, data = UCDdataframe, type = "percent", xlab = "Seating", main = "Seating vs Major")
 ```
 
-Explain what the graph shows
-
+This bar chart shows us that most Liberal Arts majors prefer to sit towards the front of the class while most NonLiberal Arts majors prefer to sit towards the back. Although it seems like as if the middle seating for both Liberal Art majors and NonLiberal Art majors is favored around the same amount from there main seating preference which would be front seating for Liberal arts and Back seating for NonLiberal arts.
 
 **Numerical summary**
 put numerical summary here
 
 ```{r}
-
+tab1 = xtabs(~seat+major, data = UCDdataframe)
+    rowPerc(tab1)
 ```
 
-Explain what the numeric summary says
+The numerical results show that Liberal Art students have around a 21% favoring to seating in the front while showing a 13% to favoring seating in the middle. There is roughly a small 8% difference in seating between these two while NonLiberal arts students show a similar low percentage of a difference of ~5% between the Back favored seating of 91% to the Middle 86% seating.
 
 ## Inferential Results
 put the inferential test for the the null hypothesis here
 
 ```{r}
-
+chisqtestGC(tab1) 
 ```
 
-what is the p-value?
+The p-value is 0.2173 which means that we fail to reject the null hypothesis.
 
 ## Results and conclusions
 
 <!-- explain-- is there evidence that certain majors tend to sit in particular areas of the class?  Can the results of this test be generalized to all majors in all universities? !-->
 
-explain the result, can the result be generalized?
+From our p-value result of 0.2173 we fail to reject the null hypothesis "$H_0$: there is no relationship between one's major and where one sits in a class". This is further supported when looking at data from our bar graph as the middle seating in the class is favored for both Liberal arts and NonLiberal arts majors showing no difference in seating for majors. In our numerical results there is a less than a 10% difference amongst the main favored seatings and the middle sections of seating for Liberal Art majors and NonLiberal Art majors showing that there is a low difference to what can be determined as a favored seating from either the front, middle, or back. The overall survey looks at roughly around 173 students for the data at UCD which is a low amount of students for a university for a survey. Due to this we can determine that this test can not be used to generalize all majors in all universities.
+
 
 <!--
 push results to your github account, turn in the URL
